@@ -4,20 +4,20 @@ namespace Wiki_418\Controllers;
 
 class ArticlesController extends AbstractController
 {
-    public function newsAction()
+    public function articlesAction()
     {
         /** @var \Wiki_418\Models\Articles $articles */
         $articles = $this->container->get('model.articles');
 
         $listOfArticles = $articles->getArticles();
 
-        $templateVariables = ['news' => $listOfArticles];
+        $templateVariables = ['articles' => $listOfArticles];
         $template = 'articles.view.php';
 
         return $this->render($template, $templateVariables);
     }
 
-    public function singleNewsArticle($id)
+    public function singleArticle($id)
     {
         /** @var \Wiki_418\Models\Articles $articles */
         $articles = $this->container->get('model.singleArticle');
