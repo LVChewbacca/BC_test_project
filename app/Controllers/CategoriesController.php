@@ -7,7 +7,7 @@ class CategoriesController extends AbstractController
 
     public function CategoryAction()
     {
-        /** @var \NewsSite\Models\Categories $category */
+        /** @var \Wiki_418\Models\Categories $category */
         $category = $this->container->get('model.categories');
 
         $ListOfCategory = $category->getArticlesCategory();
@@ -19,13 +19,13 @@ class CategoriesController extends AbstractController
     }
 
     public function singleCategoryAction($id) {
-        /** @var \NewsSite\Models\Categories $categories */
+        /** @var \Wiki_418\Models\Categories $categories */
         $categories = $this->container->get('model.singleCategory');
 
         $ListOfCategory = $categories->getSingleCategory($id);
 
-        $templateVariables = ['news' => $ListOfCategory];
-        $template = 'news.view.php';
+        $templateVariables = ['articles' => $ListOfCategory];
+        $template = 'articles.view.php';
 
         return $this->render($template, $templateVariables);
     }

@@ -35,7 +35,7 @@ class Application
             );
         $containerBuilder->register('repository.categories', '\Wiki_418\Repositories\CategoryRepo')
             ->addArgument(new Reference('database'));
-        $containerBuilder->register('repository.articles', '\Wiki_418\Repositories\NewsRepository')
+        $containerBuilder->register('repository.articles', '\Wiki_418\Repositories\ArticlesRepository')
             ->addArgument(new Reference('database'));
         $containerBuilder->register('repository.comments', '\Wiki_418\Repositories\CommentRepository')
             ->addArgument(new Reference('database'));
@@ -43,13 +43,13 @@ class Application
         $containerBuilder->register('model.categories', '\Wiki_418\Models\Categories')
             ->addArgument(new Reference('repository.categories'));
         $containerBuilder->register('model.articles', '\Wiki_418\Models\Articles')
-            ->addArgument(new Reference('repository.news'));
-        $containerBuilder->register('model.singleArticle', '\Wiki_418\Models\News')
+            ->addArgument(new Reference('repository.articles'));
+        $containerBuilder->register('model.singleArticle', '\Wiki_418\Models\Articles')
             ->addArgument(new Reference('repository.articles'))
             ->addArgument(new Reference('repository.comments'));;
         $containerBuilder->register('model.singleCategory', '\Wiki_418\Models\Categories')
             ->addArgument(new Reference('repository.categories'));
-        $containerBuilder->register('model.newArticles', '\Wiki_418\Models\News')
+        $containerBuilder->register('model.newArticles', '\Wiki_418\Models\Articles')
             ->addArgument(new Reference('repository.articles'));
 
         $containerBuilder->register('twig.loader', '\Twig_Loader_Filesystem')
@@ -88,15 +88,15 @@ class Application
         $dispatcher = \FastRoute\simpleDispatcher(function (\FastRoute\RouteCollector $r) {
             $home = new HomeController($this->getContainer());
             $categories = new CategoriesController($this->getContainer());
-            $news = new NewsController($this->getContainer());
+            $articles = new ArticlesController($this->getContainer());
             $about = new AboutController($this->getContainer());
             $contact = new ContactController($this->getContainer());
 
             $r->addRoute('GET', '/', [$home, 'homeAction']);
             $r->addRoute('GET', '/category', [$categories, 'CategoryAction']);
             $r->addRoute('GET', '/category/{id}', [$categories, 'singleCategoryAction']);
-            $r->addRoute('GET', '/news', [$news, 'articlesAction']);
-            $r->addRoute('GET', '/news/{id}', [$news, 'singleArticleAction']);
+            $r->addRoute('GET', '/articles', [$articles, 'articlesAction']);
+            $r->addRoute('GET', '/articles/{id}', [$articles, 'singleArticleAction']);
             $r->addRoute('GET', '/about', [$about, 'aboutAction']);
             $r->addRoute('GET', '/contact', [$contact, 'contactAction']);
         });

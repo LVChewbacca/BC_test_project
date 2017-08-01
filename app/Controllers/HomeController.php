@@ -8,7 +8,7 @@ class HomeController extends AbstractController
     public function homeAction()
     {
         /** @var \Wiki_418\Models\Articles $articles */
-        $articles = $this->container->get('model.latestNews');
+        $articles = $this->container->get('model.latestArticles');
 
         /** @var \Wiki_418\Models\Categories $categories */
         $categories = $this->container->get('model.categories');

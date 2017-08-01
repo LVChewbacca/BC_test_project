@@ -25,7 +25,7 @@ class ArticlesController extends AbstractController
         $listOfArticles = $articles->getSingleArticle($id);
         $listOfComments = $articles->getComments($id);
 
-        $templateVariables = ['news' => $listOfArticles, 'comments' => $listOfComments];
+        $templateVariables = ['articles' => $listOfArticles, 'comments' => $listOfComments];
         $template = 'single.article.view.php';
 
         return $this->render($template, $templateVariables);

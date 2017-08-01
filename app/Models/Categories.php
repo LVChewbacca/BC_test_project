@@ -17,6 +17,6 @@ class Categories implements CategoriesInterface
 
     public function  getSingleCategory($id)
     {
-        return $this->CategoryRepo->getCategoriesNews($id);
+        return $this->CategoryRepo->getCategoriesArticles($id);
     }
 }
