@@ -2,11 +2,11 @@
 
 namespace Wiki_418;
 
-use NewsSite\Controllers\HomeController;
-use NewsSite\Controllers\CategoriesController;
-use NewsSite\Controllers\NewsController;
-use NewsSite\Controllers\AboutController;
-use NewsSite\Controllers\ContactController;
+use Wiki_418\Controllers\HomeController;
+use Wiki_418\Controllers\CategoriesController;
+use Wiki_418\Controllers\ArticlesController;
+use Wiki_418\Controllers\AboutController;
+use Wiki_418\Controllers\ContactController;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
